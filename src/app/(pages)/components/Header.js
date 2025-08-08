@@ -8,9 +8,11 @@ import { Bell, Sun, Moon, Circle } from 'lucide-react'
 const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [notificationCount, setNotificationCount] = useState(3)
+  const [isMounted, setIsMounted] = useState(false)
 
   // Initialize theme on component mount
   useEffect(() => {
+    setIsMounted(true)
     // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem('theme')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -57,12 +59,32 @@ const Header = () => {
             </div>
           </Link>
 
+          {/* Center Navigation - Hidden on mobile */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+              Home
+            </Link>
+            <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+              About
+            </Link>
+            <Link href="/features" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+              Features
+            </Link>
+            <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+              Contact
+            </Link>
+            
+          </nav>
+
           {/* Right Side */}
           <div className="flex items-center space-x-4">
 
             {/* Notifications */}
             <div className="relative">
-              <button className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
+              <button 
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                suppressHydrationWarning={true}
+              >
                 <Bell className="w-5 h-5" />
                 {notificationCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
@@ -78,8 +100,13 @@ const Header = () => {
                 onClick={toggleTheme}
                 className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                suppressHydrationWarning={true}
               >
-                {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+                {isMounted ? (
+                  isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />
+                ) : (
+                  <Sun className="w-5 h-5" />
+                )}
               </button>
             </div>
 

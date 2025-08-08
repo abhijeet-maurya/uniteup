@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import HomeLogoSlider from "./components/HomeLogoSlider";
+import HomeLogoSlider from "./(pages)/components/HomeLogoSlider";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
               Get Started 
             </a>
             <a 
-              href="/Features"
+              href="/features"
               className="bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300 text-center font-medium flex items-center justify-center gap-2"
             >
               Explore Features
