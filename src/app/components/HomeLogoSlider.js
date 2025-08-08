@@ -1,5 +1,6 @@
 'use client';
 import React from 'react'
+import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -58,9 +59,11 @@ const HomeLogoSlider = () => {
                         logos.map((logo, index) => (
                         <SwiperSlide key={index} className="flex flex-row justify-center items-center">
                             <div className="h-full flex flex-row justify-center items-center grayscale hover:grayscale-0 dark:grayscale-0 transition-all duration-500 ease-in-out transform hover:scale-125">
-                                <img
+                                <Image
                                     src={logo.src}
                                     alt={logo.alt}
+                                    width={100}
+                                    height={40}
                                     className="h-10 w-auto object-contain transition-transform duration-300"
                                 />
                                 <p className="ml-2 text-2xl font-extrabold leading-tight text-gray-700 dark:text-gray-100 transition-colors duration-300">{logo.name}</p>

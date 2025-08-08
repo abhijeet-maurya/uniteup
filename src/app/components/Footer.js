@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail } from 'lucide-react'
 
 const Footer = () => {
@@ -14,12 +15,12 @@ const Footer = () => {
             <div className="text-center md:text-left">
               <h3 className="text-lg font-semibold text-gray-200 mb-4">Quick Links</h3>
               <div className="flex flex-col space-y-2">
-                <a 
+                <Link 
                   href="/" 
                   className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
                 >
                   Home
-                </a>
+                </Link>
                 <a 
                   href="/features" 
                   className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
